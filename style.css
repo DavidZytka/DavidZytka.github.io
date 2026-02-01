@@ -10,7 +10,7 @@ body {
 }
 
 .hero {
-  height: 100vh;
+  height: 10vh;
   outline: solid red;
   background: #cddff2; 
   display: flex;
