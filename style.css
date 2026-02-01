@@ -121,9 +121,8 @@ body {
   grid-template-columns: 1fr;
 }
 
-/* PROJECT CARD */
 .project-card {
-  background: #ffffff;
+  background: #cddff2;
   border-radius: 18px;
   padding: 28px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
