@@ -108,7 +108,7 @@ body {
 }
 
 .projects-section {
-  min-height: 100vh;
+  min-height: 120vh;
   padding: 90px 20px;
   background: #cddff2;
   display: flex;
