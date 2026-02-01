@@ -10,7 +10,7 @@ body {
 }
 
 .hero {
-  height: 10vh;
+  height: 100vh;
   outline: solid red;
   background: #cddff2; 
   display: flex;
@@ -42,7 +42,7 @@ body {
 }
 
 .skills-section {
-  min-height: 100vh;
+  min-height: 10vh;
   padding: 90px 20px;
   background: #cddff2;
   display: flex;
