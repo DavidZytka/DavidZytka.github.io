@@ -149,3 +149,7 @@ body {
 .project-link:hover {
   text-decoration: underline;
 }
+
+html {
+  scroll-behavior: smooth;
+}
