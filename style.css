@@ -5,22 +5,27 @@
   box-sizing: border-box;
 }
 
-/* SCROLL SNAP SETUP (use body as the scroll container for reliability) */
+/* IMPORTANT: make BODY the scroller (so scroll snap actually works) */
 html, body {
   height: 100%;
 }
 
+html {
+  overflow: hidden;              /* stop html from being the scroll container */
+}
+
 body {
+  height: 100%;
+  overflow-y: scroll;            /* body scrolls */
+  scroll-snap-type: y mandatory; /* snap lives on the scroller */
+  scroll-behavior: smooth;
+
+  /* navbar offset for anchor jumps */
+  scroll-padding-top: 84px;
+
   font-family: "Segoe UI", system-ui, sans-serif;
   background: #cddff2;
   color: #1f2933;
-
-  /* snap + smooth */
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-
-  /* make body the scroller */
-  overflow-y: scroll;
 }
 
 /* NAVBAR */
@@ -35,7 +40,7 @@ body {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
 .nav-left {
@@ -53,45 +58,28 @@ body {
 }
 
 .nav-right a:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255,255,255,0.7);
 }
 
-/* Anchor offset so clicking nav lands correctly */
+/* SECTION BASE — exactly one snap per section */
 .section {
-  scroll-margin-top: 84px; /* navbar + a bit */
-}
-
-/* SECTION BASE — SINGLE SNAP PER SECTION */
-.section {
-  height: 100vh;                 /* exactly one screen */
-  padding: 84px 20px 36px;       /* room for navbar */
+  height: 100vh;
+  padding: 96px 20px 60px; /* includes navbar space */
   background: #cddff2;
 
   scroll-snap-align: start;
   scroll-snap-stop: always;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center; /* center content vertically */
+  align-items: center;     /* center content horizontally */
 
   position: relative;
-
-  /* prevent the “extra scroll inside section” problem */
-  overflow: hidden;
+  overflow: hidden; /* prevents "scroll twice within section" */
 }
 
-/* Inner wrapper: NO fixed height */
-.section-inner {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  /* use gap instead of large margins (avoids overflow) */
-  gap: 14px;
-}
-
-/* Subtle side accents */
+/* Side accents (optional) */
 .section::before,
 .section::after {
   content: "";
@@ -134,8 +122,8 @@ body {
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .hero h1 {
@@ -156,14 +144,15 @@ body {
   letter-spacing: 0.22em;
   font-size: 0.75rem;
   font-weight: 700;
-  color: rgba(17, 24, 39, 0.45);
+  color: rgba(17,24,39,0.45);
+  margin-bottom: 10px;
 }
 
 .section-title {
   text-align: center;
   font-size: 2.2rem;
+  margin-bottom: 28px;
   color: #111827;
-  margin-bottom: 8px; /* small margin, gap does the rest */
 }
 
 /* ABOUT */
@@ -173,7 +162,7 @@ body {
   width: min(820px, 92vw);
   padding: 36px;
   border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
 .about-card p {
@@ -198,7 +187,7 @@ body {
   background: #ffffff;
   padding: 24px;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .skill-card h3 {
@@ -226,7 +215,7 @@ body {
   background: #ffffff;
   padding: 28px;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   text-align: left;
 }
 
@@ -280,10 +269,20 @@ body {
     opacity: 0.18;
   }
 
-  /* On small screens, allow content to flow (no clipping) */
+  /* Mobile needs normal flow sometimes */
   .section {
     height: auto;
     min-height: 100vh;
     overflow: visible;
   }
+
+  html {
+    overflow: auto;
+  }
+
+  body {
+    overflow-y: auto;
+    scroll-snap-type: none;
+  }
 }
+
