@@ -328,3 +328,102 @@ body {
   opacity: 1;
   transform: translateX(0);
 }
+
+@media (max-width: 900px) {
+
+  /* Mobile browsers hate full-page snap + 100vh.
+     Turn off snapping on mobile only. */
+  html {
+    scroll-snap-type: none;
+  }
+
+  /* Let sections size naturally but still feel “full screen” */
+  .hero,
+  .about-section,
+  .skills-section,
+  .projects-section {
+    height: auto;
+    min-height: 100vh;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    padding: 96px 16px 40px; /* room for navbar + smaller side padding */
+  }
+
+  /* HERO tweaks */
+  .profile-pic {
+    width: 165px;
+    height: 165px;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.05rem;
+  }
+
+  /* NAVBAR: keep it clean + prevent wrapping mess */
+  .nav-inner {
+    width: min(1100px, 92vw);
+    padding: 12px 0;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+
+  /* ABOUT CARD */
+  .about-card {
+    padding: 22px 20px;
+    border-radius: 18px;
+  }
+
+  .about-text {
+    font-size: 1rem;
+  }
+
+  /* SKILLS: stack cards */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .skill-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    width: min(900px, 92vw);
+    gap: 14px;
+  }
+
+  .project-card {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  /* Optional: remove the scroll hint on mobile */
+  .scroll-hint {
+    display: none;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 420px) {
+  .nav-links {
+    gap: 6px;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    padding: 6px 7px;
+  }
+}
