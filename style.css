@@ -5,19 +5,22 @@
   box-sizing: border-box;
 }
 
-/* SCROLL SNAP SETUP (put it on html for reliability) */
-html {
+/* SCROLL SNAP SETUP (use body as the scroll container for reliability) */
+html, body {
   height: 100%;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* accounts for fixed navbar */
 }
 
 body {
-  min-height: 100%;
   font-family: "Segoe UI", system-ui, sans-serif;
   background: #cddff2;
   color: #1f2933;
+
+  /* snap + smooth */
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  /* make body the scroller */
+  overflow-y: scroll;
 }
 
 /* NAVBAR */
@@ -27,7 +30,7 @@ body {
   width: 100%;
   height: 64px;
   padding: 0 48px;
-  background: #cddff2; /* your requested color */
+  background: #cddff2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,29 +56,39 @@ body {
   background: rgba(255, 255, 255, 0.7);
 }
 
-/* SECTION BASE — single snap per section */
+/* Anchor offset so clicking nav lands correctly */
 .section {
-  height: 100vh;                
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-margin-top: 84px; /* navbar + a bit */
+}
+
+/* SECTION BASE — SINGLE SNAP PER SECTION */
+.section {
+  height: 100vh;                 /* exactly one screen */
+  padding: 84px 20px 36px;       /* room for navbar */
   background: #cddff2;
 
-  padding: 84px 20px 36px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
   position: relative;
+
+  /* prevent the “extra scroll inside section” problem */
+  overflow: hidden;
 }
 
-/* Inner wrapper just handles centering + width */
+/* Inner wrapper: NO fixed height */
 .section-inner {
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centers content vertically */
-  align-items: center;     /* centers content horizontally */
+  align-items: center;
+
+  /* use gap instead of large margins (avoids overflow) */
+  gap: 14px;
 }
 
 /* Subtle side accents */
@@ -121,7 +134,7 @@ body {
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1.5rem;
+  margin-bottom: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -144,14 +157,13 @@ body {
   font-size: 0.75rem;
   font-weight: 700;
   color: rgba(17, 24, 39, 0.45);
-  margin-bottom: 10px;
 }
 
 .section-title {
   text-align: center;
   font-size: 2.2rem;
-  margin-bottom: 40px;
   color: #111827;
+  margin-bottom: 8px; /* small margin, gap does the rest */
 }
 
 /* ABOUT */
@@ -268,9 +280,10 @@ body {
     opacity: 0.18;
   }
 
-  /* On small screens, allow content to grow if needed */
+  /* On small screens, allow content to flow (no clipping) */
   .section {
     height: auto;
     min-height: 100vh;
+    overflow: visible;
   }
 }
