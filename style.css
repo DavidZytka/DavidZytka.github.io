@@ -54,7 +54,7 @@ body {
 
 /* IMPORTANT: This fixes anchor clicks with a fixed navbar */
 .section {
-  scroll-margin-top: 90px;
+  scroll-margin-top: 100px;
 }
 
 /* SECTION BASE */
