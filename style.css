@@ -5,23 +5,23 @@
   box-sizing: border-box;
 }
 
-/* IMPORTANT: make BODY the scroller (so scroll snap actually works) */
+/* BODY is the scroller */
 html, body {
   height: 100%;
 }
 
 html {
-  overflow: hidden;              /* stop html from being the scroll container */
+  overflow: hidden; /* prevents html from scrolling */
 }
 
 body {
   height: 100%;
-  overflow-y: scroll;            /* body scrolls */
-  scroll-snap-type: y mandatory; /* snap lives on the scroller */
+  overflow-y: scroll;              /* only body scrolls */
+  scroll-snap-type: y mandatory;   /* snap lives on the scroller */
   scroll-behavior: smooth;
+  scroll-padding-top: 64px;        /* fixed navbar height */
 
-  /* navbar offset for anchor jumps */
-  scroll-padding-top: 84px;
+  overscroll-behavior: none;       /* prevents bounce/extra scroll feel */
 
   font-family: "Segoe UI", system-ui, sans-serif;
   background: #cddff2;
@@ -61,22 +61,39 @@ body {
   background: rgba(255,255,255,0.7);
 }
 
-/* SECTION BASE — exactly one snap per section */
+/* SECTION: EXACTLY ONE SCREEN */
 .section {
-  height: 100vh;
-  padding: 96px 20px 60px; /* includes navbar space */
-  background: #cddff2;
-
+  height: 100svh;                  /* better than 100vh for consistent snap */
   scroll-snap-align: start;
   scroll-snap-stop: always;
 
+  background: #cddff2;
+
+  /* IMPORTANT: keep it exactly one screen tall */
+  padding: 0;
+
+  /* prevent any inner scroll */
+  overflow: hidden;
+
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* center content vertically */
-  align-items: center;     /* center content horizontally */
+  align-items: center;
+  justify-content: center;
 
   position: relative;
-  overflow: hidden; /* prevents "scroll twice within section" */
+}
+
+/* Inner content: handles navbar gap + centering */
+.section-inner {
+  width: 100%;
+  max-width: 1100px;
+
+  /* create space below navbar without changing section height */
+  padding: 84px 20px 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Side accents (optional) */
@@ -267,22 +284,6 @@ body {
   .section::before,
   .section::after {
     opacity: 0.18;
-  }
-
-  /* Mobile needs normal flow sometimes */
-  .section {
-    height: auto;
-    min-height: 100vh;
-    overflow: visible;
-  }
-
-  html {
-    overflow: auto;
-  }
-
-  body {
-    overflow-y: auto;
-    scroll-snap-type: none;
   }
 }
 
