@@ -73,13 +73,26 @@ body {
   scroll-snap-stop: always;
 }
 
+.about-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px 36px;
+  max-width: 800px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
 .about-text {
-  max-width: 720px;
   font-size: 1.05rem;
   line-height: 1.7;
   color: #4b5563;
   margin-bottom: 1.2rem;
+  text-align: left;
 }
+
+.about-text:last-child {
+  margin-bottom: 0;
+}
+
 
 
 /* SKILLS SECTION */
