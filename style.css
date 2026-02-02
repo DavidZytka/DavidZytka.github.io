@@ -63,25 +63,31 @@ body {
 
 /* SECTION BASE */
 .section {
-  /* snap */
   scroll-snap-align: start;
   scroll-snap-stop: always;
 
-  /* anchor jump offset for navbar */
-  scroll-margin-top: calc(var(--nav-h) + 24px);
+  scroll-margin-top: var(--nav-h);
 
-  /* make each section a full "page" */
-  min-height: 100vh;
-  padding: calc(var(--nav-h) + 32px) 20px 70px;
+  height: calc(100vh - var(--nav-h));
+  padding: 32px 20px;
   background: #cddff2;
+
+  display: block;
+  position: relative;
+}
+
+.section-inner {
+  height: 100%;
+  width: min(1100px, 92vw);
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;  /* centers title + card together */
   align-items: center;
-
-  position: relative;
+  gap: 18px;
 }
+
 
 /* Subtle side accents */
 .section::before,
