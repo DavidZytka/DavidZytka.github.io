@@ -53,26 +53,29 @@ body {
   background: rgba(255, 255, 255, 0.7);
 }
 
-/* SECTION BASE — THIS is the snap point (ONLY here) */
+/* SECTION BASE — single snap per section */
 .section {
-  height: 100vh;                /* important: prevents multiple snap points */
+  height: 100vh;                
   scroll-snap-align: start;
   scroll-snap-stop: always;
   background: #cddff2;
+
+  padding: 84px 20px 36px;
+
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   position: relative;
 }
 
-/* Content wrapper so padding doesn't change section height */
+/* Inner wrapper just handles centering + width */
 .section-inner {
+  height: 100%;
   width: 100%;
-  padding: 96px 20px 70px; /* top includes navbar spacing */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* centers content vertically */
+  align-items: center;     /* centers content horizontally */
 }
 
 /* Subtle side accents */
