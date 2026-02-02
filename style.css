@@ -5,6 +5,67 @@
   padding: 0;
 }
 
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #cddff2;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.nav-inner {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-weight: 700;
+  color: #111827;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 200ms ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .nav-links {
+    gap: 10px;
+  }
+  .nav-brand {
+    font-size: 1rem;
+  }
+  .nav-links a {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+}
+
+
 /* SCROLL SNAP SETUP (use html as the scroll container) */
 html {
   height: 100%;
