@@ -5,30 +5,31 @@
   padding: 0;
 }
 
-/* SCROLL SNAP SETUP */
-html, body {
+/* SCROLL SNAP SETUP (use html as the scroll container) */
+html {
   height: 100%;
-}
-
-body {
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  color: #1f2933;
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
-/* SNAP POINTS */
+body {
+  min-height: 100%;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: #1f2933;
+}
+
+/* SNAP SECTIONS */
 .hero,
 .skills-section,
 .projects-section {
+  height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
 
 /* HERO SECTION */
 .hero {
-  height: 100vh;
   background: #cddff2;
   display: flex;
   flex-direction: column;
@@ -60,8 +61,7 @@ body {
 
 /* SKILLS SECTION */
 .skills-section {
-  min-height: 100vh;
-  padding: 90px 20px 220px;
+  padding: 90px 20px;
   background: #cddff2;
   display: flex;
   flex-direction: column;
@@ -130,11 +130,11 @@ body {
 
 /* PROJECTS SECTION */
 .projects-section {
-  min-height: 100vh;
   padding: 90px 20px;
   background: #cddff2;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -142,6 +142,7 @@ body {
   width: min(900px, 92vw);
   display: grid;
   grid-template-columns: 1fr;
+  gap: 20px;
 }
 
 .project-card {
@@ -149,6 +150,7 @@ body {
   border-radius: 18px;
   padding: 28px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: left;
 }
 
 .project-card h3 {
