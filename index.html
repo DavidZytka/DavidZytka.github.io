@@ -20,21 +20,18 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero section">
-    <span class="scroll-anchor" id="home"></span>
+  <section class="hero section" id="home">
     <img src="profile.jpg" alt="Photo of David Zytka" class="profile-pic" />
     <h1>David Zytka</h1>
     <h2>Computer Engineering Graduate</h2>
   </section>
 
   <!-- ABOUT -->
-  <section class="about-section section">
-    <span class="scroll-anchor" id="about"></span>
-
+  <section class="about-section section" id="about">
     <p class="section-eyebrow">INTRODUCTION</p>
     <h2 class="section-title">About Me</h2>
 
-    <div class="about-card reveal">
+    <div class="about-card reveal" style="--delay: 0ms;">
       <p>
         Hello! Welcome to my website. I recently graduated from Sheridan College earning an advanced
         diploma in Computer Engineering Technology. I have been using computers my whole life, growing
@@ -56,9 +53,8 @@
   </section>
 
   <!-- SKILLS -->
-  <section class="skills-section section">
-    <span class="scroll-anchor" id="skills"></span>
-
+  <section class="skills-section section" id="skills">
+    <p class="section-eyebrow">CORE SKILLS</p>
     <h2 class="section-title">Skills</h2>
 
     <div class="skills-grid">
@@ -98,13 +94,12 @@
   </section>
 
   <!-- PROJECTS -->
-  <section class="projects-section section">
-    <span class="scroll-anchor" id="projects"></span>
-
+  <section class="projects-section section" id="projects">
+    <p class="section-eyebrow">SELECTED WORK</p>
     <h2 class="section-title">Projects</h2>
 
     <div class="projects-grid">
-      <div class="project-card reveal">
+      <div class="project-card reveal" style="--delay: 0ms;">
         <h3>EchoSpeak: Braille Assistive Glove</h3>
         <p>
           A wearable assistive device that translates Braille characters into spoken output
@@ -118,17 +113,16 @@
   <!-- REVEAL SCRIPT -->
   <script>
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) entry.target.classList.add("show");
         });
       },
       { threshold: 0.2 }
     );
 
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
   </script>
 
 </body>
 </html>
-
