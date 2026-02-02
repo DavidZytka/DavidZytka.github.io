@@ -1,30 +1,21 @@
 /* RESET */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* BODY is the scroller */
-html, body {
-  height: 100%;
-}
-
+/* SCROLL SNAP SETUP (use html as the scroll container) */
 html {
-  overflow: hidden; /* prevents html from scrolling */
+  height: 100%;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 body {
-  height: 100%;
-  overflow-y: scroll;              /* only body scrolls */
-  scroll-snap-type: y mandatory;   /* snap lives on the scroller */
-  scroll-behavior: smooth;
-  scroll-padding-top: 64px;        /* fixed navbar height */
-
-  overscroll-behavior: none;       /* prevents bounce/extra scroll feel */
-
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: #cddff2;
+  min-height: 100%;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   color: #1f2933;
 }
 
@@ -32,121 +23,94 @@ body {
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  height: 64px;
-  padding: 0 48px;
   background: #cddff2;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.nav-inner {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 16px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
-.nav-left {
+.nav-brand {
   font-weight: 700;
+  color: #111827;
+  text-decoration: none;
+  font-size: 1.05rem;
 }
 
-.nav-right a {
-  margin-left: 24px;
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links a {
   text-decoration: none;
+  color: #111827;
   font-weight: 600;
-  color: #1f2933;
+  font-size: 0.95rem;
   padding: 8px 10px;
   border-radius: 10px;
   transition: background 200ms ease;
 }
 
-.nav-right a:hover {
-  background: rgba(255,255,255,0.7);
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.6);
 }
 
-/* SECTION: EXACTLY ONE SCREEN */
-.section {
-  height: 100svh;                  /* better than 100vh for consistent snap */
+/* MOBILE */
+@media (max-width: 700px) {
+  .nav-links {
+    gap: 10px;
+  }
+  .nav-brand {
+    font-size: 1rem;
+  }
+  .nav-links a {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+}
+
+/* SNAP SECTIONS */
+.hero,
+.skills-section,
+.projects-section {
+  height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-
-  background: #cddff2;
-
-  /* IMPORTANT: keep it exactly one screen tall */
-  padding: 0;
-
-  /* prevent any inner scroll */
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: relative;
 }
 
-/* Inner content: handles navbar gap + centering */
-.section-inner {
-  width: 100%;
-  max-width: 1100px;
-
-  /* create space below navbar without changing section height */
-  padding: 84px 20px 40px;
-
+/* HERO SECTION */
+.hero {
+  background: #cddff2;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-}
-
-/* Side accents (optional) */
-.section::before,
-.section::after {
-  content: "";
-  position: absolute;
-  top: 18%;
-  bottom: 18%;
-  width: 2px;
-  border-radius: 999px;
-  opacity: 0.28;
-  pointer-events: none;
-}
-
-.section::before {
-  left: clamp(14px, 4vw, 48px);
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.95),
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.section::after {
-  right: clamp(14px, 4vw, 48px);
-  background: linear-gradient(
-    to bottom,
-    rgba(17, 24, 39, 0),
-    rgba(17, 24, 39, 0.10),
-    rgba(17, 24, 39, 0)
-  );
-}
-
-/* HERO */
-.hero {
+  align-items: center;
   text-align: center;
 }
 
 .profile-pic {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
   object-fit: cover;
+  border-radius: 50%;
   margin-bottom: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .hero h1 {
   font-size: 2.8rem;
-  font-weight: 800;
-  color: #111827;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
 }
 
 .hero h2 {
@@ -155,120 +119,87 @@ body {
   color: #4b5563;
 }
 
-/* TITLES */
-.section-eyebrow {
-  text-align: center;
-  letter-spacing: 0.22em;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: rgba(17,24,39,0.45);
-  margin-bottom: 10px;
+/* SKILLS SECTION */
+.skills-section {
+  padding: 90px 20px;
+  background: #cddff2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .section-title {
-  text-align: center;
   font-size: 2.2rem;
-  margin-bottom: 28px;
-  color: #111827;
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 
-/* ABOUT */
+/* ABOUT SECTION */
+.about-section {
+  height: 100vh;
+  background: #cddff2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 90px 20px;
+  text-align: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 .about-card {
   background: #ffffff;
-  max-width: 820px;
-  width: min(820px, 92vw);
-  padding: 36px;
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border-radius: 18px;
+  padding: 32px 36px;
+  max-width: 800px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-.about-card p {
-  margin-bottom: 18px;
+.about-text {
+  font-size: 1.05rem;
   line-height: 1.7;
   color: #4b5563;
+  margin-bottom: 1.2rem;
+  text-align: left;
 }
 
-.about-card p:last-child {
+.about-text:last-child {
   margin-bottom: 0;
 }
 
-/* SKILLS */
+
+/* SKILLS GRID */
 .skills-grid {
+  width: min(1000px, 92vw);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  width: min(1000px, 92vw);
+  gap: 20px;
 }
 
 .skill-card {
   background: #ffffff;
-  padding: 24px;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .skill-card h3 {
-  margin-bottom: 12px;
+  font-size: 1.15rem;
+  margin-bottom: 14px;
   color: #111827;
 }
 
-.skill-card ul {
+.skill-list {
   list-style: none;
+  padding-left: 0;
 }
 
-.skill-card li {
+.skill-list li {
   margin-bottom: 8px;
   color: #4b5563;
-}
-
-/* PROJECTS */
-.projects-grid {
-  width: min(900px, 92vw);
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.project-card {
-  background: #ffffff;
-  padding: 28px;
-  border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  text-align: left;
-}
-
-.project-card h3 {
-  margin-bottom: 12px;
-  color: #111827;
-  font-size: 1.4rem;
-}
-
-.project-card p {
-  margin: 16px 0;
-  line-height: 1.6;
-  color: #4b5563;
-}
-
-.project-link {
-  text-decoration: none;
-  font-weight: 700;
-  color: #2563eb;
-}
-
-.project-link:hover {
-  text-decoration: underline;
-}
-
-/* REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateX(60px);
-  transition: transform 700ms ease, opacity 700ms ease;
-  transition-delay: var(--delay, 0ms);
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateX(0);
+  font-size: 0.95rem;
 }
 
 /* RESPONSIVE */
@@ -276,14 +207,67 @@ body {
   .skills-grid {
     grid-template-columns: 1fr;
   }
-
-  .navbar {
-    padding: 0 18px;
-  }
-
-  .section::before,
-  .section::after {
-    opacity: 0.18;
-  }
 }
+
+/* REVEAL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateX(70px);
+  transition: transform 700ms ease, opacity 700ms ease;
+  transition-delay: var(--delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* PROJECTS SECTION */
+.projects-section {
+  padding: 90px 20px;
+  background: #cddff2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects-grid {
+  width: min(900px, 92vw);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.project-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.project-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.project-card p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.project-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
 
