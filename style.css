@@ -5,17 +5,12 @@
   box-sizing: border-box;
 }
 
-/* NAV HEIGHT VAR (used everywhere) */
-:root {
-  --nav-h: 64px;
-}
-
-/* SCROLL SNAP SETUP (make html the scroller) */
+/* SCROLL SNAP SETUP (put it on html for reliability) */
 html {
   height: 100%;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  overflow-y: scroll;
+  scroll-padding-top: 80px; /* accounts for fixed navbar */
 }
 
 body {
@@ -23,9 +18,6 @@ body {
   font-family: "Segoe UI", system-ui, sans-serif;
   background: #cddff2;
   color: #1f2933;
-
-  /* important: let html be the scroll container */
-  overflow: visible;
 }
 
 /* NAVBAR */
@@ -33,14 +25,14 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  height: var(--nav-h);
+  height: 64px;
   padding: 0 48px;
-  background: #cddff2;
+  background: #faf0e6; /* your requested color */
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .nav-left {
@@ -58,36 +50,30 @@ body {
 }
 
 .nav-right a:hover {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
 }
 
-/* SECTION BASE */
+/* SECTION BASE — THIS is the snap point (ONLY here) */
 .section {
+  height: 100vh;                /* important: prevents multiple snap points */
   scroll-snap-align: start;
   scroll-snap-stop: always;
-
-  scroll-margin-top: var(--nav-h);
-
-  height: calc(100vh - var(--nav-h));
-  padding: 32px 20px;
   background: #cddff2;
-
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 
+/* Content wrapper so padding doesn't change section height */
 .section-inner {
-  height: 100%;
-  width: min(1100px, 92vw);
-  margin: 0 auto;
-
+  width: 100%;
+  padding: 96px 20px 70px; /* top includes navbar spacing */
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* centers title + card together */
+  justify-content: center;
   align-items: center;
-  gap: 18px;
 }
-
 
 /* Subtle side accents */
 .section::before,
@@ -133,7 +119,7 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .hero h1 {
@@ -154,7 +140,7 @@ body {
   letter-spacing: 0.22em;
   font-size: 0.75rem;
   font-weight: 700;
-  color: rgba(17,24,39,0.45);
+  color: rgba(17, 24, 39, 0.45);
   margin-bottom: 10px;
 }
 
@@ -172,7 +158,7 @@ body {
   width: min(820px, 92vw);
   padding: 36px;
   border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 .about-card p {
@@ -197,7 +183,7 @@ body {
   background: #ffffff;
   padding: 24px;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .skill-card h3 {
@@ -225,7 +211,7 @@ body {
   background: #ffffff;
   padding: 28px;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   text-align: left;
 }
 
@@ -277,5 +263,11 @@ body {
   .section::before,
   .section::after {
     opacity: 0.18;
+  }
+
+  /* On small screens, allow content to grow if needed */
+  .section {
+    height: auto;
+    min-height: 100vh;
   }
 }
