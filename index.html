@@ -4,143 +4,131 @@
   <meta charset="UTF-8" />
   <title>David Zytka | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="nav-inner">
-      <a class="nav-brand" href="#home">David Zytka</a>
-
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-      </div>
+    <div class="nav-left">David Zytka</div>
+    <div class="nav-right">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero section" id="home">
-    <div class="hero-inner">
-      <img src="profile.jpg" alt="Photo of David Zytka" class="profile-pic" />
-      <h1>David Zytka</h1>
-      <h2>Computer Engineering Graduate</h2>
+  <!-- HERO -->
+  <section class="hero section">
+    <span class="scroll-anchor" id="home"></span>
+    <img src="profile.jpg" alt="Photo of David Zytka" class="profile-pic" />
+    <h1>David Zytka</h1>
+    <h2>Computer Engineering Graduate</h2>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section section">
+    <span class="scroll-anchor" id="about"></span>
+
+    <p class="section-eyebrow">INTRODUCTION</p>
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-card reveal">
+      <p>
+        Hello! Welcome to my website. I recently graduated from Sheridan College earning an advanced
+        diploma in Computer Engineering Technology. I have been using computers my whole life, growing
+        up with two older brothers who were both into gaming.
+      </p>
+
+      <p>
+        In my free time, I enjoy playing around with components and building projects from scratch.
+        I’ve built multiple computers and designed and built a few projects, including my custom
+        Braille Assistive Glove, which you can read more about below.
+      </p>
+
+      <p>
+        My experience spans microcontrollers, custom sensor systems, low-level communication protocols,
+        and software development across multiple platforms. I’m always looking to learn, improve,
+        and take on meaningful technical challenges.
+      </p>
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
-  <section class="about-section section" id="about">
-    <div class="section-inner">
-      <p class="eyebrow">INTRODUCTION</p>
-      <h2 class="section-title">About Me</h2>
+  <!-- SKILLS -->
+  <section class="skills-section section">
+    <span class="scroll-anchor" id="skills"></span>
 
-      <div class="about-card reveal" style="--delay: 0ms;">
-        <p class="about-text">
-          Hello! Welcome to my website. I recently graduated from Sheridan College
-          earning an advanced diploma in Computer Engineering Technology. I have been
-          using computers my whole life, growing up with two older brothers who were
-          both into gaming.
-        </p>
+    <h2 class="section-title">Skills</h2>
 
-        <p class="about-text">
-          In my free time, I enjoy playing around with components and building projects from scratch.
-          I’ve built multiple computers and designed and built a few projects, including my custom
-          Braille Assistive Glove, which you can read more about below.
-        </p>
+    <div class="skills-grid">
+      <div class="skill-card reveal" style="--delay: 0ms;">
+        <h3>Languages</h3>
+        <ul>
+          <li>C / C++</li>
+          <li>Python</li>
+          <li>Java</li>
+          <li>SQL</li>
+          <li>Bash</li>
+        </ul>
+      </div>
 
-        <p class="about-text">
-          My experience spans microcontrollers, custom sensor systems, low level communication
-          protocols, and software development across multiple platforms. I’m always looking to learn,
-          improve, and take on meaningful technical challenges.
-        </p>
+      <div class="skill-card reveal" style="--delay: 120ms;">
+        <h3>Embedded Systems</h3>
+        <ul>
+          <li>ESP32 / Microcontrollers</li>
+          <li>I2C / SPI / UART</li>
+          <li>Sensors & ADCs</li>
+          <li>PWM & Timers</li>
+          <li>Debugging & Testing</li>
+        </ul>
+      </div>
+
+      <div class="skill-card reveal" style="--delay: 240ms;">
+        <h3>Tools & Technologies</h3>
+        <ul>
+          <li>Git & GitHub</li>
+          <li>VSCode</li>
+          <li>Linux</li>
+          <li>MATLAB</li>
+          <li>AutoCAD / Eagle</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS SECTION -->
-  <section class="skills-section section" id="skills">
-    <div class="section-inner">
-      <p class="eyebrow">CORE SKILLS</p>
-      <h2 class="section-title">Skills</h2>
+  <!-- PROJECTS -->
+  <section class="projects-section section">
+    <span class="scroll-anchor" id="projects"></span>
 
-      <div class="skills-grid">
-        <div class="skill-card reveal" style="--delay: 0ms;">
-          <h3>Languages</h3>
-          <ul class="skill-list">
-            <li>C / C++</li>
-            <li>Python</li>
-            <li>Java</li>
-            <li>SQL</li>
-            <li>Bash</li>
-          </ul>
-        </div>
+    <h2 class="section-title">Projects</h2>
 
-        <div class="skill-card reveal" style="--delay: 120ms;">
-          <h3>Embedded Systems</h3>
-          <ul class="skill-list">
-            <li>ESP32 / Microcontrollers</li>
-            <li>I2C / SPI / UART</li>
-            <li>Sensors & ADCs</li>
-            <li>PWM & Timers</li>
-            <li>Debugging & Testing</li>
-          </ul>
-        </div>
-
-        <div class="skill-card reveal" style="--delay: 240ms;">
-          <h3>Tools & Technologies</h3>
-          <ul class="skill-list">
-            <li>Git & GitHub</li>
-            <li>VSCode</li>
-            <li>Linux</li>
-            <li>MATLAB</li>
-            <li>AutoCAD / Eagle</li>
-          </ul>
-        </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <h3>EchoSpeak: Braille Assistive Glove</h3>
+        <p>
+          A wearable assistive device that translates Braille characters into spoken output
+          using custom pressure sensors, an ESP32 microcontroller, and real-time processing.
+        </p>
+        <a href="braille-glove.html" class="project-link">Learn More →</a>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS SECTION -->
-  <section class="projects-section section" id="projects">
-    <div class="section-inner">
-      <p class="eyebrow">SELECTED WORK</p>
-      <h2 class="section-title">Projects</h2>
-
-      <div class="projects-grid">
-        <div class="project-card reveal" style="--delay: 0ms;">
-          <h3>EchoSpeak: Braille Assistive Glove</h3>
-
-          <p>
-            A wearable assistive device that translates Braille characters into
-            spoken output using custom pressure sensors, an ESP32 microcontroller,
-            and real-time processing.
-          </p>
-
-          <a href="braille-glove.html" class="project-link">
-            Learn More →
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVEAL ANIMATION SCRIPT -->
+  <!-- REVEAL SCRIPT -->
   <script>
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add("show");
         });
       },
       { threshold: 0.2 }
     );
 
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   </script>
 
 </body>
 </html>
+
